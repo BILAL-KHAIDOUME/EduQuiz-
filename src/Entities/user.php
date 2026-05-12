@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+namespace src\Entities;
+class User{
+    public function __construct(
+        private ?int $id,
+        private string $name,
+        private string $email,
+        private string $password,
+        private string $role
+
+    ){}
+    public function getId(): ?int{
+        return $this->id;
+    }
+    public function getName(): string{
+        return $this->name;
+    }
+    public function getEmail(): string{
+        return $this->email;
+    }
+    public function getPassword(): string{
+        return $this->password;
+    }
+    public function getrole(): string{
+        return $this->role;
+    }
+
+}
+?>
