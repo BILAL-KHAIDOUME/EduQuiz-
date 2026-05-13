@@ -1,5 +1,8 @@
+-- Active: 1778664580360@@127.0.0.1@3306@eduquiz
+
 CREATE DATABASE eduquiz;
 USE eduquiz;
+DROP DATABASE eduquiz;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
