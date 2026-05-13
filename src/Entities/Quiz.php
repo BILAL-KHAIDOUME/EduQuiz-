@@ -30,16 +30,15 @@ class Quiz
         $this->teacherId = $teacherId;
     }
 
-    public function toArray(): array
-        {
-            return [
-                'id' => $this->id,
-                'title' => $this->title,
-                'description' => $this->description,
-                'accessCode' => $this->accessCode,
-                'timeLimit' => $this->timeLimit,
-                'maxAttempts' => $this->maxAttempts,
-                'teacherId' => $this->teacherId,
-            ];
-        }
+            public function toArray(): array
+            {
+                return [
+                    'teacher_id' => $this->teacherId,
+                    'title' => $this->title,
+                    'description' => $this->description,
+                    'access_code' => $this->accessCode,
+                    'time_limit' => $this->timeLimit,
+                    'max_attempts' => $this->maxAttempts,
+                ];
+            }
 }

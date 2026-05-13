@@ -24,7 +24,7 @@
 
         <form
             method="POST"
-            action="store-quiz.php"
+            action="../../../public/store-quiz.php"
             class="space-y-6"
         >
 
