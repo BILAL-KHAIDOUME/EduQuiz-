@@ -1,1 +1,6 @@
 .env
+/vendor/
+
+# Composer files (usually not needed in repo if using vendor)
+/composer.lock
+composer.json
