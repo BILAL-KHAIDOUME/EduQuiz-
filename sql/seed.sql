@@ -1,3 +1,5 @@
+-- Active: 1778664580360@@127.0.0.1@3306@eduquiz
+use eduquiz;
 INSERT INTO users (name, email, password, role)
 VALUES
 ('Ayoub Teacher', 'teacher@eduquiz.com', '123456', 'teacher'),
