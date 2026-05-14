@@ -27,6 +27,7 @@ public function getFinalScore($resultId, $quizId)
     $score = $stmt->fetch()['total_score'];
 
 
+
     return [
         'score' => $score,
        
