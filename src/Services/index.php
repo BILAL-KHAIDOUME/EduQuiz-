@@ -4,12 +4,10 @@ require_once "CorrectionService.php";
 
 $resultService = new ResultService();
 
-// مثال: result_id = 1
 $resultId = 1;
 $quizId = 1;
 
 $result = $resultService->getFinalScore($resultId, $quizId);
-
 
 
 ?>
@@ -25,10 +23,14 @@ $result = $resultService->getFinalScore($resultId, $quizId);
 
 <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
 
+    
     <h1 class="text-2xl font-bold mb-4">
-     Votre Score est : <?= $result['score'] ?>
+         Votre Score est : <?= $result['score'] ?> / <?= $result['total'] ?>
     </h1>
- 
+
+   
+
+
 
 </div>
 
