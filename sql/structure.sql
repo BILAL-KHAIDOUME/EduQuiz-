@@ -96,3 +96,4 @@ CREATE TABLE answers (
     REFERENCES choices(id)
     ON DELETE CASCADE
 );
+
