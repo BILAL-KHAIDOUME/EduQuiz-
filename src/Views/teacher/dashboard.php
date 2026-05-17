@@ -113,8 +113,8 @@ $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <div class="flex gap-3">
 
-                                <a
-                                    href="#"
+                               <a
+                                    href="../../../public/edit-quiz.php?id=<?= $quiz['id'] ?>"
                                     class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded-xl"
                                 >
                                     Edit
