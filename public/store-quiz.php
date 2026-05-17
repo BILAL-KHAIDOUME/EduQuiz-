@@ -16,8 +16,9 @@
             1
             );
             $repository->create($quiz);
-            
-        echo "Quiz created successfully";
+            echo "Quiz created successfully";
+            header("Location: ../src/Views/teacher/dashboard.php");
+            exit;
     }else{
         echo"failed";
     }
