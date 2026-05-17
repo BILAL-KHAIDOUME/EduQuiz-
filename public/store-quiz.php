@@ -11,8 +11,8 @@
             $_POST['title'],
             $_POST['description'],
              QuizService::generateAccessCode(),
-            $_POST['time_limit'],
-            $_POST['max_attempts'],
+             (int) $_POST['time_limit'],
+             (int) $_POST['max_attempts'],
             1
             );
             $repository->create($quiz);
