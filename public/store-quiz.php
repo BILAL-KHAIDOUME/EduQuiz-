@@ -11,13 +11,14 @@
             $_POST['title'],
             $_POST['description'],
              QuizService::generateAccessCode(),
-            $_POST['time_limit'],
-            $_POST['max_attempts'],
+             (int) $_POST['time_limit'],
+             (int) $_POST['max_attempts'],
             1
             );
             $repository->create($quiz);
-            
-        echo "Quiz created successfully";
+            echo "Quiz created successfully";
+            header("Location: ../src/Views/teacher/dashboard.php");
+            exit;
     }else{
         echo"failed";
     }

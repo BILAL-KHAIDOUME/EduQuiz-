@@ -21,7 +21,7 @@ CREATE TABLE quizzes (
     access_code VARCHAR(20) UNIQUE NOT NULL,
     time_limit INT DEFAULT 0,
     max_attempts INT DEFAULT 1,
-    status ENUM('draft', 'published', 'closed') DEFAULT 'draft',
+    status ENUM('draft', 'published', 'closed') DEFAULT 'published',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_quiz_teacher
