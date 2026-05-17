@@ -120,13 +120,16 @@ $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     Edit
                                 </a>
 
-                                <a
-                                    href="../../../public/delete-quiz.php?id=<?= $quiz['id'] ?>"
-                                    class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center py-2 rounded-xl"
-                                >
-                                    Delete
-                                </a>
-
+                                 <form action="../../../public/delete-quiz.php" method="POST" class="flex-1">
+                                    <input type="hidden" name="id" value="<?= $quiz['id'] ?>">
+                                    <button
+                                        type="submit"
+                                        class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-xl"
+                                        onclick="return confirm('Are you sure?');"
+                                    >
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
 
                         </div>
