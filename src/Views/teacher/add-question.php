@@ -1,3 +1,6 @@
+<?php
+    $quizId = $_GET['quiz_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,11 @@
             class="space-y-6"
         >
 
-            <input type="hidden" name="quiz_id" value="1">
+            <input
+    type="hidden"
+    name="quiz_id"
+    value="<?= $quizId ?>"
+>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
