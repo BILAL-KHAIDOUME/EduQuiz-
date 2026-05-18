@@ -24,7 +24,7 @@
 
     </div>
 
-    <!-- RIGHT SIDE -->
+   
     <div class="p-8 md:p-12 bg-gray-900">
 
         <h2 class="text-3xl font-bold text-white mb-2">
@@ -35,9 +35,9 @@
             Enter your credentials to access your account
         </p>
 
-        <form method="POST" action="../Views/login.php" class="space-y-6">
+        <form method="POST" action="../../public/index.php?action=login">
 
-            <!-- EMAIL -->
+           
             <div>
                 <label class="block text-sm text-gray-300 mb-2">
                     Email
@@ -51,7 +51,7 @@
                 >
             </div>
 
-            <!-- PASSWORD -->
+            
             <div>
                 <label class="block text-sm text-gray-300 mb-2">
                     Password
@@ -65,7 +65,7 @@
                 >
             </div>
 
-            <!-- BUTTON -->
+          
             <button
                 type="submit"
                 class="w-full bg-purple-600 hover:bg-purple-700 transition text-white font-semibold py-3 rounded-xl"
@@ -73,7 +73,6 @@
                 Login
             </button>
 
-            <!-- REGISTER -->
             <p class="text-gray-400 text-sm text-center">
                 Don’t have an account?
                 <a href="../Views/register.php" class="text-purple-400 hover:underline">

@@ -1,53 +1,64 @@
 <?php
 
-namespace Src\Services;
-
-use Src\Repositories\UserRepository;
+require_once __DIR__ . '/../Repositories/UserRepository.php';
 
 class AuthService
 {
-    private UserRepository $repo;
+    private $userRepository;
 
     public function __construct()
     {
-        $this->repo = new UserRepository();
+        $this->userRepository = new UserRepository();
     }
 
-    public function register(array $data): bool
+    
+    public function register($name, $email, $password, $role)
     {
-        $name = trim($data['name'] ?? '');
-        $email = trim($data['email'] ?? '');
-        $password = $data['password'] ?? '';
-        $role = $data['role'] ?? 'student';
+        $existingUser = $this->userRepository
+            ->findByEmail($email);
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) return false;
-        if ($name === '' || strlen($password) < 8) return false;
+        if($existingUser){
 
-        if ($this->repo->findByEmail($email)) return false;
+            return "Email already exists";
+        }
 
-        return $this->repo->create([
-            'name' => $name,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_BCRYPT),
-            'role' => $role
-        ]);
-    }
+        $hashedPassword = password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
 
-    public function login(string $email, string $password): bool
-    {
-        $user = $this->repo->findByEmail($email);
-
-        if (!$user) return false;
-
-        if (!password_verify($password, $user['password'])) return false;
-
-        $_SESSION['user'] = $user;
+        $this->userRepository->create(
+            $name,
+            $email,
+            $hashedPassword,
+            $role
+        );
 
         return true;
     }
 
-    public function logout(): void
+    
+    public function login($email, $password)
     {
-        session_destroy();
+        $user = $this->userRepository
+            ->findByEmail($email);
+
+        if(!$user){
+
+            return "User not found";
+        }
+
+        if(!password_verify(
+            $password,
+            $user['password']
+        )){
+            return "Wrong password";
+        }
+
+        session_start();
+
+        $_SESSION['user'] = $user;
+
+        return true;
     }
 }

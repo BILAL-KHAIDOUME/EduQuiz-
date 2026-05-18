@@ -1,41 +1,43 @@
 <?php
 
-namespace Src\Repositories;
-
-use PDO;
-use Config\Database;
+require_once __DIR__ . '/../../config/Database.php';
+require_once __DIR__ . '/../Entities/User.php';
 
 class UserRepository
 {
-    private PDO $pdo;
+    private $db;
 
     public function __construct()
     {
-        $this->pdo = Database::getConnection();
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $database = new Database();
+
+        $this->db = $database->connect();
     }
 
-    public function findByEmail(string $email): ?array
+    public function findByEmail($email)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
+        $sql = $this->db->prepare(
+            "SELECT * FROM users WHERE email = ?"
+        );
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql->execute([$email]);
 
-        return $user ?: null;
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create(array $data): bool
+    
+    public function create($name, $email, $password, $role)
     {
-        $stmt = $this->pdo->prepare("
-            INSERT INTO users (name, email, password, role)
-            VALUES (:name, :email, :password, :role)
-        ");
+        $sql = $this->db->prepare(
+            "INSERT INTO users(name,email,password,role)
+             VALUES(?,?,?,?)"
+        );
 
-        try {
-            return $stmt->execute($data);
-        } catch (\PDOException $e) {
-            die("DB ERROR: " . $e->getMessage());
-        }
+        return $sql->execute([
+            $name,
+            $email,
+            $password,
+            $role
+        ]);
     }
 }

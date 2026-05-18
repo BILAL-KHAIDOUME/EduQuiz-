@@ -1,42 +1,29 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Config;
-
-use PDO;
-use PDOException;
-
 class Database
 {
-    private static ?PDO $instance = null;
+    private $host = "localhost";
+    private $dbname = "eduquiz";
+    private $username = "root";
+    private $password = "";
 
-    public static function getConnection(): PDO
+    public function connect()
     {
-        if (self::$instance === null) {
+        try {
 
-            $host = 'localhost';
-            $dbname = 'eduquiz';
-            $user = 'root';
-            $password = '';
+            $pdo = new PDO(
+                "mysql:host=$this->host;dbname=$this->dbname;charset=utf8",
+                $this->username,
+                $this->password
+            );
 
-            try {
-                self::$instance = new PDO(
-                    "mysql:host=$host;dbname=$dbname;charset=utf8",
-                    $user,
-                    $password
-                );
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                self::$instance->setAttribute(
-                    PDO::ATTR_ERRMODE,
-                    PDO::ERRMODE_EXCEPTION
-                );
+            return $pdo;
 
-            } catch (PDOException $e) {
-                die("Erreur BDD : " . $e->getMessage());
-            }
+        } catch(PDOException $e){
+
+            die("Database Error : " . $e->getMessage());
         }
-
-        return self::$instance;
     }
 }
